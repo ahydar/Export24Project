@@ -63,11 +63,10 @@ namespace WPFExportSolution
         private void BeginExport(object sender, RoutedEventArgs e)
         {
             DatabaseManager Db = DatabaseManager.Instance;
-            Db.ConnectionString = dbCredentials.ToString(); 
             var conn = Db.OpenConnection();
             if (conn.Item2)
             {
-                SharedFolderManager.SharedFolderManager sharedFolder = new SharedFolderManager.SharedFolderManager();
+                SharedFolderManager.SharedFolderManager sharedFolder = SharedFolderManager.SharedFolderManager.Instance;
                 string status = sharedFolder.ExportCSV();
                 MessageBox.Show(status);
                 Db.CloseConnection();

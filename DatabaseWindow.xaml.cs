@@ -52,7 +52,6 @@ namespace WPFExportSolution
         {
             SetDatabaseCredentials();
             DatabaseManager Db = DatabaseManager.Instance;
-            Db.ConnectionString = dbCredentials.ToString();
             (string, bool) status = Db.OpenConnection();
             if (status.Item2)
             {

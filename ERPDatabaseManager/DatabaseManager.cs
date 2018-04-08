@@ -5,7 +5,7 @@ using WPFExportSolution.Models;
 
 namespace WPFExportSolution.ERPDatabaseManager
 {
-    class DatabaseManager : IDatabaseManager
+    public class DatabaseManager : IDatabaseManager
     {
         public static readonly DatabaseManager Instance = new DatabaseManager();
 
@@ -13,11 +13,15 @@ namespace WPFExportSolution.ERPDatabaseManager
 
         private SqlConnection DbConnection;
 
-        public string ConnectionString;
+        private DbCredentials dbCredentials = DbCredentials.Instance;
 
+        private DatabaseManager()
+        {
+
+        }
         public (string,bool) OpenConnection()
         {
-            DbConnection = new SqlConnection(ConnectionString);
+            DbConnection = new SqlConnection(dbCredentials.ToString());
             try
             {
                 DbConnection.Open();
@@ -70,7 +74,5 @@ namespace WPFExportSolution.ERPDatabaseManager
             }
             return CSVData.ToString();
         }
-
-        
     }
 }

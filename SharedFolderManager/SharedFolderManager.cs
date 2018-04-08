@@ -6,13 +6,18 @@ using WPFExportSolution.Models;
 
 namespace WPFExportSolution.SharedFolderManager
 {
-    class SharedFolderManager : ISharedFolderManager
+    public class SharedFolderManager : ISharedFolderManager
     {
         public static readonly SharedFolderManager Instance = new SharedFolderManager(); 
-        SharedFolderCredentials sharedFolderCredentials = SharedFolderCredentials.Instance;
-        DatabaseManager databaseManager = DatabaseManager.Instance; 
+        private SharedFolderCredentials sharedFolderCredentials = SharedFolderCredentials.Instance;
+        private DatabaseManager databaseManager = DatabaseManager.Instance; 
 
         public bool Connected;
+
+        private SharedFolderManager()
+        {
+
+        }
         public string ExportCSV()
         {
             var credentials = new NetworkCredential(sharedFolderCredentials.UserName, sharedFolderCredentials.Password);
